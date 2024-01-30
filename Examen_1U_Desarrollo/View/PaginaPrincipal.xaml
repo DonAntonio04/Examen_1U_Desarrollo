@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Examen_1U_Desarrollo.View.PaginaPrincipal">
+    <StackLayout>
+        <Frame BackgroundColor="White" Padding="24" CornerRadius="0">
+            <Label Text="Calcular IMC y FCN" TextColor="Black" HorizontalTextAlignment="Center" FontSize="36"/>
+        </Frame>
+        <Frame>
+            <Label Text="Pudes seleccionar entre calcular tu índice de Masa 
+               Corporal (IMC) y tu Frecuencia Cardiaca Normal (FCN)" TextColor="Black"></Label>
+        </Frame>
+        <Label Text="Opciones" TextColor="Black" ></Label>
+        <Grid>
+            <RadioButton Grid.Column="0" Grid.Row="1"></RadioButton>
+            <Label Text="IMC"/>
+            <RadioButton Grid.Column="2" Grid.Row="1"></RadioButton>
+            <Label Text="FCN" Grid.Column="2" Grid.Row="0"></Label>
+
+            <Label Text="Proporcionar datos" TextColor="Black" Grid.Column="0" Grid.Row="3"></Label>
+            <Entry Placeholder="Peso" Grid.Column="0" Grid.Row="4"></Entry>
+            <Entry Placeholder="Altura" Grid.Column="1" Grid.Row="4"></Entry>
+            <Button Text="Calcular" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+        </Grid>
+
+    </StackLayout>
+</ContentPage>
