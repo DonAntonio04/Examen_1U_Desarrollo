@@ -10,17 +10,19 @@
             <Label Text="Pudes seleccionar entre calcular tu índice de Masa 
                Corporal (IMC) y tu Frecuencia Cardiaca Normal (FCN)" TextColor="Black"></Label>
         </Frame>
-        <Label Text="Opciones" TextColor="Black" ></Label>
+        <Label Text="Opciones" TextColor="Black"></Label>
         <Grid>
-            <RadioButton Grid.Column="0" Grid.Row="1"></RadioButton>
-            <Label Text="IMC"/>
-            <RadioButton Grid.Column="2" Grid.Row="1"></RadioButton>
+            <RadioButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding IMC}" ></RadioButton>
+            <Label Text="IMC" Grid.Column="0" Grid.Row="0" />
+            <RadioButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding FCN}"></RadioButton>
             <Label Text="FCN" Grid.Column="2" Grid.Row="0"></Label>
 
             <Label Text="Proporcionar datos" TextColor="Black" Grid.Column="0" Grid.Row="3"></Label>
-            <Entry Placeholder="Peso" Grid.Column="0" Grid.Row="4"></Entry>
-            <Entry Placeholder="Altura" Grid.Column="1" Grid.Row="4"></Entry>
-            <Button Text="Calcular" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+            <Entry Placeholder="Peso" IsVisible="{Binding  MostrarImc}" Grid.Column="0" Grid.Row="4" />
+            <Entry Placeholder="Altura" IsVisible="{Binding  MostrarImc}" Grid.Column="1" Grid.Row="4" />
+            <Entry Placeholder="Latidos" IsVisible="{Binding  MostrarFcn }" Grid.Column="1" Grid.Row="4" />
+            <Button Text="Calcular" Command="{Binding CalcularCommand }" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+            <Label Text="{Binding  Resultado}" Grid.Column="1" Grid.Row="6"> </Label>
         </Grid>
 
     </StackLayout>
