@@ -21,8 +21,13 @@
             <Entry Placeholder="Peso" IsVisible="{Binding  MostrarImc}" Grid.Column="0" Grid.Row="4" />
             <Entry Placeholder="Altura" IsVisible="{Binding  MostrarImc}" Grid.Column="1" Grid.Row="4" />
             <Entry Placeholder="Latidos" IsVisible="{Binding  MostrarFcn }" Grid.Column="1" Grid.Row="4" />
-            <Button Text="Calcular" Command="{Binding CalcularCommand }" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
-            <Label Text="{Binding  Resultado}" Grid.Column="1" Grid.Row="6"> </Label>
+            <Button Text="Calcular" Command="{Binding CalcularCommand }" IsVisible="{Binding MostrarFcn}" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+            <Button Text="Calcular" Command="{Binding  Calcularimccommand }" IsVisible="{Binding MostrarImc}" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+            <Entry Text="{Binding  Resultado}" IsVisible="{Binding MostrarFcn}" Grid.Column="1" Grid.Row="6"> </Entry>
+            <Entry Text="{Binding  ResultadoImc}" IsVisible="{Binding MostrarImc}" Grid.Column="1" Grid.Row="6"></Entry>
+            <Image Source="comprobar.png" IsVisible="{Binding MostrarComprobar }"  HeightRequest="180" Grid.Row="7" Grid.Column="1"></Image>
+           
+            <Image Source="crisis.png" IsVisible="{Binding  MostrarCrisis}" HeightRequest="180"></Image>
         </Grid>
 
     </StackLayout>

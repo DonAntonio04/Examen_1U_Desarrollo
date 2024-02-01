@@ -9,7 +9,7 @@ namespace Examen_1U_Desarrollo.ViewModel
     public class VMcalcular : BaseViewModel
     {
         #region VARIABLES
-        double _peso;
+        double _IMC1;
         bool _imc;
         bool _fcn;   
         bool _MostrarFcn;
@@ -18,6 +18,7 @@ namespace Examen_1U_Desarrollo.ViewModel
         bool _mostrarCrisis;
         double _altura;
         string _resultado;
+        string _resultadoImc;
         double _latidos;
         #endregion
         #region CONSTRUCTOR
@@ -27,10 +28,10 @@ namespace Examen_1U_Desarrollo.ViewModel
         }
         #endregion
         #region OBJETOS
-        public double Peso
+        public double IMC1
         {
-            get { return _peso; }
-            set { SetValue(ref _peso, value); }
+            get { return _IMC1; }
+            set { SetValue(ref _IMC1, value); }
         }
         public bool IMC
         {
@@ -40,8 +41,8 @@ namespace Examen_1U_Desarrollo.ViewModel
                 SetValue(ref _imc, value);
                 if (_imc)
                 {
-                    MostrarFcn = false;  // Ocultar la entrada de FCN si se selecciona IMC
-                    MostrarImc = true;   // Mostrar la entrada de IMC si se selecciona IMC
+                    MostrarFcn = false;  
+                    MostrarImc = true;   
                 }
             }
         }
@@ -54,8 +55,8 @@ namespace Examen_1U_Desarrollo.ViewModel
                 SetValue(ref _fcn, value);
                 if (_fcn)
                 {
-                    MostrarImc = false;  // Ocultar la entrada de IMC si se selecciona FCN
-                    MostrarFcn = true;   // Mostrar la entrada de FCN si se selecciona FCN
+                    MostrarImc = false;  
+                    MostrarFcn = true;   
                 }
             }
         }
@@ -92,6 +93,11 @@ namespace Examen_1U_Desarrollo.ViewModel
             get { return _altura; }
             set { SetValue(ref _altura, value);}
         }
+        public string ResultadoImc
+        {
+            get { return _resultadoImc; }
+            set { SetValue(ref _resultadoImc, value);}
+        }
         public string Resultado
         {
             get { return _resultado; }
@@ -101,32 +107,64 @@ namespace Examen_1U_Desarrollo.ViewModel
         #region PROCESOS
         public void CalcularIMC()
         {
-
+            double A = 0;
+            double B = 0;
+            IMC1 = A / B * 2;
         }
 
-
+        public void CalcularIMC1()
+        {
+           if(MostrarImc)
+            {
+               if(IMC1 < 18.5)
+                {
+                    ResultadoImc = $"Su IMC es {IMC1}, Usted tiene un peso insuficiente";
+                    MostrarComprobar = false;
+                    MostrarCrisis = false;
+                }
+               else if(IMC1 >= 18.5 && 24.9 <= IMC1)
+                {
+                    ResultadoImc = $"Su IMC es {IMC1}, Normal o saludable";
+                    MostrarComprobar = true;
+                    MostrarCrisis = false;
+                }
+               else if (IMC1 >= 25.0 && 29.9 <= IMC1 )
+                {
+                    ResultadoImc = $"Su IMC es {IMC1}, tiene SobrePeso";
+                    MostrarComprobar = false;
+                    MostrarCrisis = true;
+                }
+               else
+                {
+                    ResultadoImc = $"Su IMC es {IMC}, tiene Obesidad";
+                    MostrarComprobar = false;
+                    MostrarCrisis = false;
+                }
+            }
+        }
 
         public void Calcularf(double a)
         {
-            Latidos = a * 4;
+           Latidos =  Latidos * 4;
+            
         }
 
         public void CalcularFCN()
         {
             if (MostrarFcn)
             {
-                // Lógica específica para FCN si es necesario
+                
                 Calcularf(Latidos);
 
                 if (Latidos < 0)
                 {
-                    Resultado = "Error";
+                    Resultado = $"Su IMC es {Latidos} Error";
                     MostrarComprobar = false;
                     MostrarCrisis = false;
                 }
                 else if (Latidos < 60)
                 {
-                    Resultado = "Es Bajo";
+                    Resultado = $"Su FCN es {Latidos}Es Bajo";
                     MostrarComprobar = true;
                     MostrarCrisis = false;
                 }
@@ -145,11 +183,11 @@ namespace Examen_1U_Desarrollo.ViewModel
             }
           
         }
-
+      
         #endregion
         #region COMANDOS
         public ICommand CalcularCommand => new Command(CalcularFCN);
-     
+        public ICommand Calcularimccommand => new Command(CalcularIMC1);    
         #endregion
     }
 }
