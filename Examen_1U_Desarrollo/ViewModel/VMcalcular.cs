@@ -11,15 +11,18 @@ namespace Examen_1U_Desarrollo.ViewModel
         #region VARIABLES
         double _IMC1;
         bool _imc;
-        bool _fcn;   
+        bool _fcn;
+        double _peso;
+        double _altura;
         bool _MostrarFcn;
         bool _Mostrarimc;
         bool _MostrarComprobar;
-        bool _mostrarCrisis;
-        double _altura;
+        bool _mostrarCrisis; 
         string _resultado;
+        string _resultado1;
         string _resultadoImc;
         double _latidos;
+        double _latido;
         #endregion
         #region CONSTRUCTOR
         public VMcalcular(INavigation navigation)
@@ -88,10 +91,20 @@ namespace Examen_1U_Desarrollo.ViewModel
             get { return _latidos; }
            set { SetValue(ref _latidos, value); }
         }
+        public double Latido
+        {
+            get { return _latido; }
+            set { SetValue(ref _latido, value); }
+        }
         public double Altura
         {
             get { return _altura; }
             set { SetValue(ref _altura, value);}
+        }
+        public double Peso
+        {
+            get { return _peso; }
+            set { SetValue(ref _peso, value); }
         }
         public string ResultadoImc
         {
@@ -103,49 +116,48 @@ namespace Examen_1U_Desarrollo.ViewModel
             get { return _resultado; }
             set { SetValue(ref _resultado, value);} 
         }
+        public string Resultado1
+        {
+            get { return _resultado1; }
+            set { SetValue(ref _resultado1, value);}
+        }
         #endregion
         #region PROCESOS
-        public void CalcularIMC()
+        public void CalcularIMC(double a, double p)
         {
-            double A = 0;
-            double B = 0;
-            IMC1 = A / B * 2;
+            IMC1 = p / Math.Pow(a, 2);
         }
 
-        public void CalcularIMC1()
+        public async void CalcularIMC1()
         {
-           if(MostrarImc)
+
+            if (!string.IsNullOrEmpty(Convert.ToString(Peso)) && !string.IsNullOrEmpty(Convert.ToString(Altura)))
             {
-               if(IMC1 < 18.5)
+
+                CalcularIMC(Altura,Peso);
+
+                if (IMC1 < 18)
                 {
-                    ResultadoImc = $"Su IMC es {IMC1}, Usted tiene un peso insuficiente";
-                    MostrarComprobar = false;
-                    MostrarCrisis = false;
+                    ResultadoImc = $"Si IMC es {IMC1},Tienes bajo peso";
                 }
-               else if(IMC1 >= 18.5 && 24.9 <= IMC1)
+                else if (IMC1 >= 18 && IMC1 <= 24.9)
                 {
-                    ResultadoImc = $"Su IMC es {IMC1}, Normal o saludable";
-                    MostrarComprobar = true;
-                    MostrarCrisis = false;
+                    ResultadoImc = $"Su IMC es {IMC1},Peso Normal";
                 }
-               else if (IMC1 >= 25.0 && 29.9 <= IMC1 )
+                else if (IMC1 > 24.9 && IMC1 <= 29.9)
                 {
-                    ResultadoImc = $"Su IMC es {IMC1}, tiene SobrePeso";
-                    MostrarComprobar = false;
-                    MostrarCrisis = true;
+                    ResultadoImc = $"Su IMC es {IMC1},Tienes Sobre Peso";
                 }
-               else
+                else
                 {
-                    ResultadoImc = $"Su IMC es {IMC}, tiene Obesidad";
-                    MostrarComprobar = false;
-                    MostrarCrisis = false;
+                    ResultadoImc = $"Su IMC es {IMC1},Tienes Obesidad";
                 }
             }
         }
 
         public void Calcularf(double a)
         {
-           Latidos =  Latidos * 4;
+           Latido =  a * 4;
             
         }
 
@@ -156,27 +168,27 @@ namespace Examen_1U_Desarrollo.ViewModel
                 
                 Calcularf(Latidos);
 
-                if (Latidos < 0)
+                if (Latido < 0)
                 {
-                    Resultado = $"Su IMC es {Latidos} Error";
+                    Resultado1 = $"Su FCN es {Latido} Error";
                     MostrarComprobar = false;
                     MostrarCrisis = false;
                 }
-                else if (Latidos < 60)
+                else if (Latido < 60)
                 {
-                    Resultado = $"Su FCN es {Latidos}Es Bajo";
+                    Resultado1 = $"Su FCN es {Latido}, Es Bajo";
                     MostrarComprobar = true;
                     MostrarCrisis = false;
                 }
-                else if (Latidos >= 60 && Latidos <= 100)
+                else if (Latido >= 60 && Latido <= 100)
                 {
-                    Resultado = "Es Normal";
+                    Resultado1 = $"Su FCN es {Latido}, Es Normal";
                     MostrarComprobar = true;
                     MostrarCrisis = false;
                 }
                 else
                 {
-                    Resultado = "Es Alta";
+                    Resultado1 = $"Su FCN es {Latido}, Es Alta";
                     MostrarComprobar = false;
                     MostrarCrisis = true;
                 }

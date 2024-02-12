@@ -18,16 +18,17 @@
             <Label Text="FCN" Grid.Column="2" Grid.Row="0"></Label>
 
             <Label Text="Proporcionar datos" TextColor="Black" Grid.Column="0" Grid.Row="3"></Label>
-            <Entry Placeholder="Peso" IsVisible="{Binding  MostrarImc}" Grid.Column="0" Grid.Row="4" />
-            <Entry Placeholder="Altura" IsVisible="{Binding  MostrarImc}" Grid.Column="1" Grid.Row="4" />
-            <Entry Placeholder="Latidos" IsVisible="{Binding  MostrarFcn }" Grid.Column="1" Grid.Row="4" />
-            <Button Text="Calcular" Command="{Binding CalcularCommand }" IsVisible="{Binding MostrarFcn}" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
-            <Button Text="Calcular" Command="{Binding  Calcularimccommand }" IsVisible="{Binding MostrarImc}" CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
-            <Entry Text="{Binding  Resultado}" IsVisible="{Binding MostrarFcn}" Grid.Column="1" Grid.Row="6"> </Entry>
-            <Entry Text="{Binding  ResultadoImc}" IsVisible="{Binding MostrarImc}" Grid.Column="1" Grid.Row="6"></Entry>
-            <Image Source="comprobar.png" IsVisible="{Binding MostrarComprobar }"  HeightRequest="180" Grid.Row="7" Grid.Column="1"></Image>
+            <Entry Placeholder="Peso" IsVisible="{Binding  MostrarImc}" Text="{Binding Peso}" Grid.Column="0" Grid.Row="4" />
+            <Entry Placeholder="Altura" IsVisible="{Binding  MostrarImc}" Text="{Binding Altura}" Grid.Column="1" Grid.Row="4" />
+            <Entry Placeholder="Latidos" IsVisible="{Binding  MostrarFcn }" Text="{Binding Latidos}" Grid.Column="1" Grid.Row="4" />
+            
+            <Button Text="Calcular" Command="{Binding CalcularCommand }" IsVisible="{Binding MostrarFcn}" BackgroundColor="Red"  CornerRadius="30" Grid.Column="3" Grid.Row="5"></Button>
+            <Button Text="Calcular" Command="{Binding  Calcularimccommand }" IsVisible="{Binding MostrarImc}" BackgroundColor="Blue" CornerRadius="30" Grid.Column="3" Grid.Row="5" ></Button>
+            
+            <Label Text="{Binding  Resultado1}" IsVisible="{Binding MostrarFcn}" Grid.Column="1" Grid.Row="6" FontAttributes="Bold"> </Label>
+            <Label Text="{Binding  ResultadoImc}" IsVisible="{Binding MostrarImc}" Grid.Column="1" Grid.Row="6" FontAttributes="Bold"></Label>
            
-            <Image Source="crisis.png" IsVisible="{Binding  MostrarCrisis}" HeightRequest="180"></Image>
+           
         </Grid>
 
     </StackLayout>
